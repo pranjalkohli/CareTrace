@@ -46,12 +46,8 @@ HOW IT CONNECTS
 
 import numpy as np
 from vector_store import search
+
 from config import TOP_K, SIMILARITY_THRESHOLD
-
-# NOTE: TOP_K and SIMILARITY_THRESHOLD now live in config.py as the single
-# source of truth. Import them from there rather than redefining locally,
-# so every module agrees on the same values.
-
 
 def _filter_by_threshold(scores: np.ndarray, positions: np.ndarray, threshold: float):
     """
@@ -80,7 +76,6 @@ def _search_equipment_specific(query_vector: np.ndarray, records_df, all_inciden
     FAISS index for such a small set adds complexity with no speed
     benefit. A single matrix multiplication (dot product) against ~15
     rows is effectively instant.
-
     If equipment_id is None (e.g. during evaluation against test_cases.csv,
     which only specifies equipment_type, not a specific unit), this stage
     is skipped entirely -- there is no "this specific machine's history"
@@ -88,7 +83,6 @@ def _search_equipment_specific(query_vector: np.ndarray, records_df, all_inciden
     """
     if equipment_id is None:
         return [], []
-
     mask = (records_df["equipment_id"] == equipment_id).to_numpy()
     subset_positions = np.where(mask)[0]   # original row positions where mask is True
 
@@ -175,7 +169,6 @@ def retrieve_evidence(query_vector: np.ndarray, equipment_id, records_df, all_in
     equipment_id may be None (skips straight to broadened search) --
     used when you only know the equipment TYPE, not a specific unit
     (e.g. during evaluation against test_cases.csv).
-
     Tries, in order, until one stage finds relevant evidence:
         1. equipment_specific : this exact equipment_id's own history
         2. broadened_history  : all equipment's incident history
