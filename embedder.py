@@ -51,13 +51,13 @@ a fully offline sandbox.
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
+from config import EMBEDDING_MODEL_NAME
 
 # Loading the model is slow (downloads ~90MB the first time, then loads
 # it into memory every time). We load it ONCE per program run and reuse
 # it, instead of reloading inside every function call.
-_MODEL_NAME = "all-MiniLM-L6-v2"
-_model = None
 
+_MODEL_NAME = EMBEDDING_MODEL_NAME
 
 def get_model() -> SentenceTransformer:
     """

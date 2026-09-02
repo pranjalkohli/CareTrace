@@ -47,15 +47,7 @@ HOW IT CONNECTS
 import numpy as np
 from vector_store import search
 
-
-# ---------------------------------------------------------------------------
-# TUNABLE SETTINGS -- documented here, easy to find and change.
-# These are starting points (as agreed) -- inspect real similarity score
-# distributions on your data and adjust based on what you observe.
-# ---------------------------------------------------------------------------
-TOP_K = 5                     # how many candidates to retrieve at each stage
-SIMILARITY_THRESHOLD = 0.60   # minimum cosine similarity to count as "relevant enough"
-
+from config import TOP_K, SIMILARITY_THRESHOLD
 
 def _filter_by_threshold(scores: np.ndarray, positions: np.ndarray, threshold: float):
     """
@@ -84,7 +76,13 @@ def _search_equipment_specific(query_vector: np.ndarray, records_df, all_inciden
     FAISS index for such a small set adds complexity with no speed
     benefit. A single matrix multiplication (dot product) against ~15
     rows is effectively instant.
+    If equipment_id is None (e.g. during evaluation against test_cases.csv,
+    which only specifies equipment_type, not a specific unit), this stage
+    is skipped entirely -- there is no "this specific machine's history"
+    to search, so we go straight to the broadened search.
     """
+    if equipment_id is None:
+        return [], []
     mask = (records_df["equipment_id"] == equipment_id).to_numpy()
     subset_positions = np.where(mask)[0]   # original row positions where mask is True
 
@@ -161,13 +159,16 @@ def _build_guide_evidence(guide_df, scores, positions) -> list[dict]:
     return evidence
 
 
-def retrieve_evidence(query_vector: np.ndarray, equipment_id: str, records_df, all_incident_embeddings: np.ndarray,
+def retrieve_evidence(query_vector: np.ndarray, equipment_id, records_df, all_incident_embeddings: np.ndarray,
                        incident_index, guide_df, guide_index, k: int = TOP_K,
                        threshold: float = SIMILARITY_THRESHOLD) -> dict:
     """
     The main orchestrator function for this module -- implements the
     exact fallback chain from your project requirements.
 
+    equipment_id may be None (skips straight to broadened search) --
+    used when you only know the equipment TYPE, not a specific unit
+    (e.g. during evaluation against test_cases.csv).
     Tries, in order, until one stage finds relevant evidence:
         1. equipment_specific : this exact equipment_id's own history
         2. broadened_history  : all equipment's incident history

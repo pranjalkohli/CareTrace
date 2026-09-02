@@ -85,7 +85,7 @@ def _split_into_fault_sections(markdown_text: str) -> list[str]:
     """
     # "\n## " ensures we split on section headings only, not any stray
     # line starting with ## inside body text.
-    raw_sections = re.split(r"\n## ", markdown_text)
+    raw_sections = re.split(r"(?m)^## ", markdown_text)
 
     sections = []
     for block in raw_sections:
