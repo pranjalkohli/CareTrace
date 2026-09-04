@@ -1,6 +1,9 @@
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
+class EquipmentAnalyzeRequest(BaseModel):
+    symptom_text: str
+    equipment_type: Optional[str] = "Unknown"
 
 
 class IncidentCreate(BaseModel):
@@ -37,3 +40,8 @@ class EquipmentResponse(EquipmentReport):
 
     class Config:
         from_attributes = True
+
+class EquipmentAnalyzeRequest(BaseModel):
+    equipment_id: Optional[str] = None
+    equipment_type: str
+    symptom_text: str

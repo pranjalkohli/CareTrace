@@ -1,0 +1,64 @@
+equipment_id,equipment_type,manufacturer,model,department,installation_date,criticality,operating_hours,last_maintenance_date,next_maintenance_date,status
+EQ-VEN-001,Ventilator,MedAir,V-800,Emergency,2021-02-21,Critical,9814,2026-07-09,2026-11-17,Operational
+EQ-VEN-002,Ventilator,MedAir,V-800,NICU,2024-04-24,Critical,5570,2026-07-14,2026-10-15,Operational
+EQ-VEN-003,Ventilator,MedAir,V-800,ICU,2024-02-24,High,20356,2026-07-27,2026-10-15,Operational
+EQ-VEN-004,Ventilator,RespiraTech,RV-500,ICU,2025-07-16,High,7731,2026-08-14,2026-10-28,Operational
+EQ-VEN-005,Ventilator,MedAir,V-800,NICU,2022-03-17,Critical,14949,2026-07-07,2026-10-23,Operational
+EQ-VEN-006,Ventilator,RespiraTech,RV-500,ICU,2025-07-11,High,20071,2026-07-08,2026-11-29,Operational
+EQ-VEN-007,Ventilator,RespiraTech,RV-500,Emergency,2025-08-26,High,14350,2026-08-06,2026-10-13,Operational
+EQ-INF-008,Infusion Pump,InfuCare,IP-500,ICU,2024-09-16,High,5114,2026-07-15,2026-11-25,Operational
+EQ-INF-009,Infusion Pump,MediFlow,IF-700,General Ward,2023-07-18,Medium,7829,2026-07-24,2026-10-23,Operational
+EQ-INF-010,Infusion Pump,MediFlow,IF-700,General Ward,2024-12-08,High,22460,2026-08-10,2026-10-11,Operational
+EQ-INF-011,Infusion Pump,InfuCare,IP-500,Oncology,2021-12-01,High,23471,2026-08-14,2026-11-05,Operational
+EQ-INF-012,Infusion Pump,MediFlow,IF-700,ICU,2025-09-23,Critical,3551,2026-07-21,2026-10-26,Operational
+EQ-INF-013,Infusion Pump,InfuCare,IP-500,General Ward,2024-03-07,High,23977,2026-08-01,2026-10-26,Under Maintenance
+EQ-INF-014,Infusion Pump,MediFlow,IF-700,Oncology,2021-10-20,Critical,20894,2026-08-04,2026-10-17,Operational
+EQ-PAT-015,Patient Monitor,Cliniview,CV-900,Emergency,2024-04-10,High,7032,2026-08-02,2026-11-01,Operational
+EQ-PAT-016,Patient Monitor,VitalSys,PM-300,ICU,2025-10-30,Critical,7742,2026-08-20,2026-11-13,Operational
+EQ-PAT-017,Patient Monitor,VitalSys,PM-300,Emergency,2023-02-28,High,17837,2026-08-03,2026-10-17,Limited Use
+EQ-PAT-018,Patient Monitor,VitalSys,PM-300,General Ward,2024-10-25,Critical,20095,2026-08-18,2026-10-18,Operational
+EQ-PAT-019,Patient Monitor,Cliniview,CV-900,Emergency,2021-08-17,High,17367,2026-07-01,2026-11-16,Operational
+EQ-PAT-020,Patient Monitor,Cliniview,CV-900,ICU,2023-10-23,High,5986,2026-08-10,2026-10-20,Operational
+EQ-PAT-021,Patient Monitor,VitalSys,PM-300,Emergency,2021-11-10,High,20174,2026-08-19,2026-11-29,Operational
+EQ-ECG-022,ECG Machine,CardioLab,ECG-12,Emergency,2024-05-11,High,6165,2026-07-24,2026-11-26,Limited Use
+EQ-ECG-023,ECG Machine,HeartTrace,H-300,Cardiology,2022-05-06,Critical,21091,2026-07-06,2026-10-06,Operational
+EQ-ECG-024,ECG Machine,CardioLab,ECG-12,General Ward,2025-04-07,High,6707,2026-08-12,2026-10-31,Under Maintenance
+EQ-ECG-025,ECG Machine,CardioLab,ECG-12,General Ward,2022-06-27,Medium,16365,2026-07-14,2026-11-29,Operational
+EQ-ECG-026,ECG Machine,CardioLab,ECG-12,Emergency,2024-12-31,High,23795,2026-07-24,2026-10-29,Under Maintenance
+EQ-ECG-027,ECG Machine,HeartTrace,H-300,Cardiology,2021-09-05,Critical,13578,2026-07-02,2026-11-07,Operational
+EQ-ECG-028,ECG Machine,CardioLab,ECG-12,Cardiology,2021-01-15,High,4429,2026-07-15,2026-10-05,Under Maintenance
+EQ-DEF-029,Defibrillator,PulseGuard,PG-700,Cardiology,2021-05-26,Critical,18406,2026-07-14,2026-11-04,Operational
+EQ-DEF-030,Defibrillator,PulseGuard,PG-700,ICU,2022-05-13,Medium,8739,2026-07-07,2026-10-07,Operational
+EQ-DEF-031,Defibrillator,PulseGuard,PG-700,ICU,2023-05-18,High,4275,2026-08-13,2026-11-11,Limited Use
+EQ-DEF-032,Defibrillator,RescueMed,D-500,ICU,2021-05-05,High,6080,2026-07-16,2026-10-13,Operational
+EQ-DEF-033,Defibrillator,PulseGuard,PG-700,ICU,2021-10-15,Critical,17659,2026-07-16,2026-11-25,Under Maintenance
+EQ-DEF-034,Defibrillator,PulseGuard,PG-700,Cardiology,2025-07-13,Critical,23869,2026-08-04,2026-11-23,Operational
+EQ-DEF-035,Defibrillator,RescueMed,D-500,Emergency,2025-03-24,Critical,18413,2026-07-31,2026-10-14,Operational
+EQ-X-R-036,X-ray Machine,Radiant Imaging,XR-500,Emergency,2021-12-04,Critical,15293,2026-07-17,2026-11-29,Operational
+EQ-X-R-037,X-ray Machine,MedRay,MX-900,Emergency,2022-08-08,High,20711,2026-08-12,2026-11-15,Operational
+EQ-X-R-038,X-ray Machine,Radiant Imaging,XR-500,Radiology,2022-08-31,Medium,21478,2026-08-17,2026-11-04,Operational
+EQ-X-R-039,X-ray Machine,MedRay,MX-900,Radiology,2021-04-28,High,18977,2026-08-03,2026-10-11,Operational
+EQ-X-R-040,X-ray Machine,Radiant Imaging,XR-500,Radiology,2025-10-10,Critical,4726,2026-08-13,2026-11-25,Operational
+EQ-X-R-041,X-ray Machine,Radiant Imaging,XR-500,Radiology,2024-03-12,High,3802,2026-08-09,2026-10-06,Operational
+EQ-X-R-042,X-ray Machine,MedRay,MX-900,Radiology,2022-06-19,High,12795,2026-07-16,2026-10-17,Operational
+EQ-BLO-043,Blood Analyzer,HemaTech,HA-600,Pathology,2023-07-26,Medium,4877,2026-07-01,2026-10-30,Operational
+EQ-BLO-044,Blood Analyzer,LabCore,BA-400,Laboratory,2021-05-31,High,6840,2026-07-23,2026-11-26,Operational
+EQ-BLO-045,Blood Analyzer,LabCore,BA-400,Pathology,2023-01-27,Critical,20300,2026-08-15,2026-10-20,Operational
+EQ-BLO-046,Blood Analyzer,LabCore,BA-400,Pathology,2024-09-29,Medium,5894,2026-07-09,2026-10-17,Operational
+EQ-BLO-047,Blood Analyzer,LabCore,BA-400,Laboratory,2025-03-01,Critical,22319,2026-07-14,2026-11-15,Operational
+EQ-BLO-048,Blood Analyzer,HemaTech,HA-600,Pathology,2023-11-02,Critical,4164,2026-07-06,2026-11-10,Operational
+EQ-BLO-049,Blood Analyzer,HemaTech,HA-600,Laboratory,2021-04-01,High,6786,2026-08-10,2026-10-17,Operational
+EQ-DIA-050,Dialysis Machine,DialyTech,DT-500,ICU,2024-02-04,High,6165,2026-07-05,2026-11-30,Under Maintenance
+EQ-DIA-051,Dialysis Machine,RenalCare,DX-700,Dialysis Unit,2024-01-23,Medium,21587,2026-08-05,2026-10-10,Operational
+EQ-DIA-052,Dialysis Machine,RenalCare,DX-700,ICU,2022-09-24,Medium,3807,2026-07-23,2026-10-14,Operational
+EQ-DIA-053,Dialysis Machine,RenalCare,DX-700,ICU,2022-12-26,Medium,7564,2026-07-16,2026-11-25,Operational
+EQ-DIA-054,Dialysis Machine,RenalCare,DX-700,Dialysis Unit,2023-04-25,Critical,13385,2026-08-20,2026-11-29,Operational
+EQ-DIA-055,Dialysis Machine,RenalCare,DX-700,Dialysis Unit,2022-07-01,High,6042,2026-07-25,2026-11-25,Operational
+EQ-DIA-056,Dialysis Machine,DialyTech,DT-500,Dialysis Unit,2022-04-01,Medium,17583,2026-07-23,2026-10-20,Operational
+EQ-SUC-057,Suction Machine,SuctionPro,SP-200,ICU,2022-04-02,High,15556,2026-07-22,2026-10-18,Operational
+EQ-SUC-058,Suction Machine,CareVac,CV-100,General Ward,2022-12-21,High,20070,2026-07-22,2026-11-30,Operational
+EQ-SUC-059,Suction Machine,CareVac,CV-100,General Ward,2022-01-01,Medium,11198,2026-07-03,2026-10-07,Operational
+EQ-SUC-060,Suction Machine,CareVac,CV-100,Emergency,2025-02-01,High,19258,2026-07-08,2026-10-25,Under Maintenance
+EQ-SUC-061,Suction Machine,SuctionPro,SP-200,ICU,2022-06-06,High,2555,2026-08-03,2026-11-29,Operational
+EQ-SUC-062,Suction Machine,SuctionPro,SP-200,Emergency,2023-01-16,Critical,13319,2026-08-09,2026-10-21,Operational
+EQ-SUC-063,Suction Machine,SuctionPro,SP-200,Emergency,2025-01-14,High,15882,2026-07-21,2026-10-26,Operational

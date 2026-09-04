@@ -148,3 +148,14 @@ __pycache__/
 *.pyc
 caretrace.db
 uploads/
+
+# Never commit your real API key
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Saved FAISS indices (rebuild these locally instead of committing them)
+*.index
+

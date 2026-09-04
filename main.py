@@ -1,47 +1,145 @@
 """
 main.py -- Runnable Entry Point
-==================================
+================================
 
-This is the file you actually run. It sets up the pipeline once, then
-lets you diagnose a symptom.
+Sets up the hospital equipment troubleshooting pipeline and allows
+the user to enter an equipment type, optional equipment ID, and
+symptom interactively.
 
-SETUP (one time, in an environment WITH internet access):
-    pip install sentence-transformers faiss-cpu google-genai pydantic --break-system-packages
-
-Then get a free Gemini API key from https://aistudio.google.com
-and paste it in below (or better: set it as an environment variable
-GEMINI_API_KEY and read it with os.environ, rather than hardcoding it
-in a file you might accidentally share/commit).
+It also runs the retrieval-only evaluation on test_cases.csv.
 """
 
 import os
-from orchestrator import setup_pipeline, diagnose
+from dotenv import load_dotenv          # <-- add this line
 
-# Put your CSVs and guide .md files in the same folder as this script,
-# or update these paths.
+from orchestrator import setup_pipeline, diagnose
+from evaluator import load_test_cases, run_evaluation, summarize_results
+
+load_dotenv()                            # <-- add this line, before reading the key
+
+# -------------------------------------------------------------------
+# File paths
+# -------------------------------------------------------------------
+EQUIPMENT_CSV = "equipment.csv"
+...
+
+
+# -------------------------------------------------------------------
+# File paths
+# -------------------------------------------------------------------
+
 EQUIPMENT_CSV = "equipment.csv"
 INCIDENTS_CSV = "incidents.csv"
-GUIDES_FOLDER = "knowledge_base"   # folder containing the *_guide.md files
-
-API_KEY = os.environ.get("GEMINI_API_KEY", "PASTE_YOUR_KEY_HERE")
+GUIDES_FOLDER = "knowledge_base"
 
 
-if __name__ == "__main__":
-    print("Setting up pipeline (loading data, building embeddings + FAISS indices)...")
-    pipeline = setup_pipeline(EQUIPMENT_CSV, INCIDENTS_CSV, GUIDES_FOLDER)
-    print(f"Ready. {len(pipeline.records_df)} incidents, {len(pipeline.guides_df)} guide chunks indexed.\n")
+# -------------------------------------------------------------------
+# Gemini API key
+# -------------------------------------------------------------------
 
-    # --- Example diagnosis, with a known equipment_id ---
-    result = diagnose(
-        pipeline=pipeline,
-        equipment_type="Ventilator",
-        symptom_text="strange noise and pressure keeps spiking",
-        api_key=API_KEY,
-        equipment_id="EQ-VEN-001",   # set to None if you only know the equipment TYPE
+# Set GEMINI_API_KEY in your environment instead of hardcoding it.
+API_KEY = os.environ.get("GEMINI_API_KEY")
+
+if not API_KEY:
+    raise ValueError(
+        "GEMINI_API_KEY is not set. "
+        "Please set your Gemini API key as an environment variable."
     )
 
-    print("Status:", result["status"])
+
+# -------------------------------------------------------------------
+# Main program
+# -------------------------------------------------------------------
+
+if __name__ == "__main__":
+
+    # --- Set up pipeline ---
+    print(
+        "Setting up pipeline "
+        "(loading data, building embeddings + FAISS indices)..."
+    )
+
+    pipeline = setup_pipeline(
+        EQUIPMENT_CSV,
+        INCIDENTS_CSV,
+        GUIDES_FOLDER
+    )
+
+    print(
+        f"Ready. {len(pipeline.records_df)} incidents, "
+        f"{len(pipeline.guides_df)} guide chunks indexed.\n"
+    )
+
+    # ----------------------------------------------------------------
+    # Interactive diagnosis
+    # ----------------------------------------------------------------
+
+    print("=== Hospital Equipment Troubleshooting System ===")
     print()
-    print("Diagnosis:")
+
+    equipment_type = input("Enter equipment type: ").strip()
+
+    equipment_id = input(
+        "Enter equipment ID (press Enter if unknown): "
+    ).strip()
+
+    symptom_text = input(
+        "Describe the problem: "
+    ).strip()
+
+    # Empty equipment ID means that the exact machine is unknown.
+    if equipment_id == "":
+        equipment_id = None
+
+    # Run diagnosis
+    result = diagnose(
+        pipeline=pipeline,
+        equipment_type=equipment_type,
+        symptom_text=symptom_text,
+        api_key=API_KEY,
+        equipment_id=equipment_id,
+    )
+
+          #equipment_type="Ventilator",
+          #smptom_text="unusual noise"
+          #equipment_id="EQ-VEN-001"
+
+    # ----------------------------------------------------------------
+    # Display diagnosis
+    # ----------------------------------------------------------------
+
+    print("\nStatus:", result["status"])
+
+    print("\nDiagnosis:")
+
     for key, value in result["diagnosis"].items():
         print(f"  {key}: {value}")
+
+    # ----------------------------------------------------------------
+    # Evaluate the pipeline on test cases
+    # ----------------------------------------------------------------
+
+    print("\nRunning retrieval evaluation on test cases...")
+
+    test_cases = load_test_cases("test_cases.csv")
+
+    # call_llm=False means the evaluation does NOT make Gemini calls.
+    # It only evaluates the retrieval system.
+    results = run_evaluation(
+        test_cases_df=test_cases,
+        pipeline=pipeline,
+        api_key=API_KEY,
+        call_llm=False,
+    )
+
+    summarize_results(results)
+
+    results.to_csv(
+        "evaluation_results.csv",
+        index=False
+    )
+
+    print(
+        "\nEvaluation results saved to evaluation_results.csv"
+    )
+

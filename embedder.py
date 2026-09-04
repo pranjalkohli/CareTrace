@@ -58,6 +58,8 @@ from config import EMBEDDING_MODEL_NAME
 # it, instead of reloading inside every function call.
 
 _MODEL_NAME = EMBEDDING_MODEL_NAME
+_model = None
+
 
 def get_model() -> SentenceTransformer:
     """
