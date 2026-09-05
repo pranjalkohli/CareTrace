@@ -26,6 +26,13 @@ import { useLocation } from "wouter";
 import { toast } from "sonner";
 
 /* =========================================================
+   BACKEND URL
+   Change this if you redeploy the backend somewhere else.
+========================================================= */
+
+const BACKEND_URL = "https://caretrace-production-ee34.up.railway.app";
+
+/* =========================================================
    TYPES
 ========================================================= */
 
@@ -1925,7 +1932,7 @@ export default function Home() {
         setLoadingIncidents(true);
 
         const response = await fetch(
-          "http://127.0.0.1:8000/incidents"
+          `${BACKEND_URL}/incidents`
         );
 
         if (!response.ok) {
